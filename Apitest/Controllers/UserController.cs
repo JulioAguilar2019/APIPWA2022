@@ -106,6 +106,13 @@ namespace Apitest.Controllers
         }
 
 
+        [HttpGet("GetAll")]
+        public IEnumerable<users> GetAll2()
+        {
+            var users = _userService.getAll();
+            return users;
+        }
+
 
     }
 }

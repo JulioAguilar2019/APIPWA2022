@@ -102,7 +102,24 @@ namespace Apitest.Services
             }
         }
 
+        public IEnumerable<users> getAll()
+        {
+            var users = (from us in _context.users.ToList()
+                         join bc in _context.briefcase.ToList() on us.user_id equals bc.user_id
+                         join cer in _context.certifications.ToList() on us.user_id equals cer.user_id
+                         join skills in _context.skills.ToList() on us.user_id equals skills.user_id
+                         join work in _context.work_experience.ToList() on us.user_id equals work.user_id
+                         select new users()
+                         {
+                             certifications = us.certifications,
+                             work_experience = us.work_experience,
+                             skills = us.skills,
+                             briefcase = us.briefcase,
+                             
+                         }).ToList();
+
+            return users;
+        }
        
-        
     }
 }

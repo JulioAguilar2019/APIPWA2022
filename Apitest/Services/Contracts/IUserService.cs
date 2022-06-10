@@ -18,7 +18,7 @@ namespace Apitest.Services.Contracts
 
         public Task DestroyAsync(int id);
 
-     
+        public IEnumerable<users> getAll();
 
     }
 }
