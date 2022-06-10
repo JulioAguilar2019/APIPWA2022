@@ -15,6 +15,8 @@ namespace Apitest.Models
         public string cert_description { get; set; }
 
         public string cert_link { get; set; }
+        
         public Nullable<int> user_id { get; set; }
+        public virtual users users { get; set; }
     }
 }

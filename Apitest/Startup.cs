@@ -39,7 +39,9 @@ namespace Apitest
 
             services.AddDbContext<UsersdbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("myConecction")));
 
-            services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IUserService,  UserService>();
+            services.AddTransient<IBriefCaseService, BriefCaseService>();
+            services.AddTransient<ISkillsService, SkillsService>();
 
         }
 

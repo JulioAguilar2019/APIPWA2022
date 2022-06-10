@@ -33,6 +33,8 @@ namespace Apitest.Services
                 throw;
             }
         }
+
+
         public async Task<users> CreateUserAsync(users user)
         {
             try
@@ -72,7 +74,7 @@ namespace Apitest.Services
                     return user;
                 }
 
-                throw new Exception("El producto no se encuentra");
+                throw new Exception("El usuario no se encuentra");
             }
             catch (System.Exception)
             {
@@ -100,9 +102,7 @@ namespace Apitest.Services
             }
         }
 
-        public Task<users> Destroy(int id)
-        {
-            throw new System.NotImplementedException();
-        }
+       
+        
     }
 }

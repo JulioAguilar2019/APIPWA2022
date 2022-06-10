@@ -10,10 +10,11 @@ namespace Apitest.Models
 
         public string work_exp_description { get; set; }
 
-        public Nullable<System.DateTime> date_init { get; set; }
+        public Nullable<DateTime> date_init { get; set; }
 
-        public Nullable<System.DateTime> date_fin { get; set; }
+        public Nullable<DateTime> date_fin { get; set; }
         public Nullable<int> user_id { get; set; }
+        public virtual users users { get; set; }
 
     }
 }

@@ -6,6 +6,8 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Apitest.Services;
+using Apitest.dbContexts;
+using System.Linq;
 
 namespace Apitest.Controllers
 {
@@ -15,13 +17,14 @@ namespace Apitest.Controllers
     {
 
         private readonly IUserService _userService;
-        public UserController(IUserService userService)
+        private readonly UsersdbContext _context;
+        public UserController(IUserService userService, UsersdbContext dbContext)
         {
             _userService = userService;
+            _context = dbContext;
         }
 
-        [HttpGet("GetUser")]
-       
+        [HttpGet("Get")]       
 
         public async Task<ActionResult<List<users>>> GetUsersAsync()
         {
@@ -36,6 +39,7 @@ namespace Apitest.Controllers
                 return BadRequest(e.Message);
             }
         }
+
         [HttpGet("{id:int}", Name = "GetUserById")]
         public async Task<ActionResult<users>> GetUserByIdAsync(int id)
         {
@@ -54,7 +58,7 @@ namespace Apitest.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpPost("Create")]
         public async Task<ActionResult<users>> CreateUserAsync(users user)
         {
             try
@@ -70,7 +74,7 @@ namespace Apitest.Controllers
             }
         }
 
-        [HttpPut]
+        [HttpPut("Edit")]
 
         public async Task<ActionResult<users>> UpdateUserAsync(users user)
         {
@@ -86,13 +90,13 @@ namespace Apitest.Controllers
             }
         }
 
-        [HttpDelete]
+        [HttpDelete("Delete")]
         public async Task<ActionResult> DeleteUserAsync(int id)
         {
             try
             {
                 await _userService.DestroyAsync(id);
-                return Ok("Producto eliminado correctamente");
+                return Ok("Usuario eliminado correctamente");
             }
             catch (Exception e)
             {
@@ -100,6 +104,8 @@ namespace Apitest.Controllers
                 return BadRequest(e.Message);
             }
         }
+
+
 
     }
 }
